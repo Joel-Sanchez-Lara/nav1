@@ -40,6 +40,15 @@
         "version": "1.38.45"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "CLINICA_105",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "ABAP Connection (Clinica)"
     }
   ],
   "sendWelcomeFileRedirect": true

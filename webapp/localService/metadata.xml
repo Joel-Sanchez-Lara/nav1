@@ -1,0 +1,51 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZASESORIA_SRV" xml:lang="es" sap:schema-version="1">
+			<EntityType Name="datos" sap:content-version="1">
+				<Key><PropertyRef Name="Rut"/></Key><Property Name="Apellido" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Apellido" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Nombre" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Rut" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Car.20" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="LosPacientes" Relationship="ZASESORIA_SRV.DetallesDelPaciente" FromRole="FromRole_DetallesDelPaciente"
+					ToRole="ToRole_DetallesDelPaciente"/><NavigationProperty Name="LosOtrosDetalles" Relationship="ZASESORIA_SRV.DetallesDelPaciente2" FromRole="FromRole_DetallesDelPaciente2"
+					ToRole="ToRole_DetallesDelPaciente2"/></EntityType>
+			<EntityType Name="datos_detalle" sap:content-version="1">
+				<Key><PropertyRef Name="Rut"/><PropertyRef Name="Id"/></Key><Property Name="Rut" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Car.20" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Campo de texto, longitud 10"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Campo1" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Campo2" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Campo3" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ElDetalle" Relationship="ZASESORIA_SRV.DetallesDelPaciente" FromRole="ToRole_DetallesDelPaciente"
+					ToRole="FromRole_DetallesDelPaciente"/></EntityType>
+			<EntityType Name="datos_detalle2" sap:content-version="1">
+				<Key><PropertyRef Name="Rut"/><PropertyRef Name="Id"/></Key><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Mandante" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Rut" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Car.20" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Campo de texto, longitud 10"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Campo1" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Campo2" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Campo3" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Carácter 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="ElDetalle2" Relationship="ZASESORIA_SRV.DetallesDelPaciente2" FromRole="ToRole_DetallesDelPaciente2"
+					ToRole="FromRole_DetallesDelPaciente2"/></EntityType>
+			<Association Name="DetallesDelPaciente2" sap:content-version="1"><End Type="ZASESORIA_SRV.datos" Multiplicity="1" Role="FromRole_DetallesDelPaciente2"/><End Type="ZASESORIA_SRV.datos_detalle2" Multiplicity="*" Role="ToRole_DetallesDelPaciente2"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_DetallesDelPaciente2"><PropertyRef Name="Rut"/></Principal>
+					<Dependent Role="ToRole_DetallesDelPaciente2"><PropertyRef Name="Rut"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="DetallesDelPaciente" sap:content-version="1"><End Type="ZASESORIA_SRV.datos" Multiplicity="1" Role="FromRole_DetallesDelPaciente"/><End Type="ZASESORIA_SRV.datos_detalle" Multiplicity="*" Role="ToRole_DetallesDelPaciente"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_DetallesDelPaciente"><PropertyRef Name="Rut"/></Principal>
+					<Dependent Role="ToRole_DetallesDelPaciente"><PropertyRef Name="Rut"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZASESORIA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="datos" EntityType="ZASESORIA_SRV.datos" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="datos_detalleSet" EntityType="ZASESORIA_SRV.datos_detalle" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="datos_detalle2Set" EntityType="ZASESORIA_SRV.datos_detalle2" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="DetallesDelPaciente2Set" Association="ZASESORIA_SRV.DetallesDelPaciente2" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="datos" Role="FromRole_DetallesDelPaciente2"/><End EntitySet="datos_detalle2Set" Role="ToRole_DetallesDelPaciente2"/></AssociationSet>
+				<AssociationSet Name="DetallesDelPacienteSet" Association="ZASESORIA_SRV.DetallesDelPaciente" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="datos" Role="FromRole_DetallesDelPaciente"/><End EntitySet="datos_detalleSet" Role="ToRole_DetallesDelPaciente"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZASESORIA_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZASESORIA_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
